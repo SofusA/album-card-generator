@@ -1,0 +1,5 @@
+[[language]]
+name = "html"
+formatter = { command = "prettier", args = ["--parser", "jinja-template", "--stdin-filepath=%{buffer_name}"]}
+auto-format = true
+language-servers = ["vscode-html-language-server", "typos"]

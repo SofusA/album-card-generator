@@ -1,0 +1,16 @@
+{
+  "name": "album-card-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier --write \"**/*.html\""
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "prettier-plugin-jinja-template": "^2.1.0"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-jinja-template"
+    ]
+  }
+}
