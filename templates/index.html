@@ -5,38 +5,49 @@
     <title>Album card generator</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="" />
-    <link rel="icon" href="favicon.png" />
   </head>
 
   <body>
     <div style="display: flex; flex-wrap: wrap; gap: 0.2cm; ">
-      {% for album in albums %}
+      {% for chunk in albums %}
         <div
           style="
-            font-size: 12px;
+            break-after: page;
             display: flex;
-            flex-direction: column;
-            width: 6cm;
-            height: 8.9cm;
-            border-width: 0.5mm;
-            border-color: black;
-            border-style: solid;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.2cm;
           "
         >
-          <img src="{{ album.image.large }}" style="width: 100%" />
-          <div
-            style="
-            display: flex;
-            height: 100%;
-            align-items: center;
-            padding: 5mm;"
-          >
-            <div style="display: flex; flex-direction: column; gap: 1mm">
-              <span>{{ album.title }}</span>
-              <b>{{ album.artist.name }}</b>
-              <i>{{ album.release_date_original | year }}</i>
+          {% for album in chunk %}
+            <div
+              style="
+                font-size: 12px;
+                display: flex;
+                flex-direction: column;
+                width: 6cm;
+                height: 8.9cm;
+                border-width: 0.5mm;
+                border-color: black;
+                border-style: solid;
+              "
+            >
+              <img src="{{ album.image.large }}" style="width: 100%" />
+              <div
+                style="
+                  display: flex;
+                  height: 100%;
+                  align-items: center;
+                  padding: 5mm;"
+              >
+                <div style="display: flex; flex-direction: column; gap: 1mm">
+                  <span>{{ album.title }}</span>
+                  <b>{{ album.artist.name }}</b>
+                  <i>{{ album.release_date_original | year }}</i>
+                </div>
+              </div>
             </div>
-          </div>
+          {% endfor %}
         </div>
       {% endfor %}
     </div>

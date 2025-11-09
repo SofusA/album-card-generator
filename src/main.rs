@@ -27,6 +27,8 @@ async fn main() {
     let albums: Vec<_> = args.album_ids.split(' ').map(|x| client.album(x)).collect();
     let albums = try_join_all(albums).await.unwrap();
 
+    let albums = albums.chunks(8).map(|x| x.to_vec()).collect();
+
     let albums = Arc::new(AppState {
         context: TeraContext { albums },
     });
@@ -46,7 +48,7 @@ struct AppState {
 
 #[derive(serde::Deserialize, serde::Serialize, Clone)]
 struct TeraContext {
-    albums: Vec<Album>,
+    albums: Vec<Vec<Album>>,
 }
 
 async fn handler(State(state): State<Arc<AppState>>) -> Html<String> {
